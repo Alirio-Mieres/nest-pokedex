@@ -28,9 +28,12 @@ export class PokemonService {
 
   }
 
+
   findAll() {
     return `This action returns all pokemon`;
   }
+
+  
 
   async findOne(term: string) {
     let pokemon: Pokemon;
@@ -87,7 +90,7 @@ export class PokemonService {
     const { deletedCount } = await this.pokemonModel.deleteOne({_id: id});
 
     if( deletedCount === 0)
-    throw new BadRequestException(`Pokemon with id "${ id }" not found`)
+      throw new BadRequestException(`Pokemon with id "${ id }" not found`)
 
     return;
   }
