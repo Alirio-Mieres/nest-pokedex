@@ -59,12 +59,10 @@ export class PokemonService {
       pokemon = await this.pokemonModel.findOne({no: term})
     }
 
-    // MongoID
     if( !pokemon && isValidObjectId( term ) ){
       pokemon = await this.pokemonModel.findById(term);
     }
 
-    // Name
     if( !pokemon ){
       pokemon = await this.pokemonModel.findOne({name: term.toLowerCase().trim()})
     }
@@ -98,12 +96,6 @@ export class PokemonService {
 
 
   async remove(id: string) {
-
-    // const pokemon = await this.findOne( id );
-    // await pokemon.deleteOne();
-    //return { id }
-    
-    // const result = await this.pokemonModel.findByIdAndDelete( id );
     const { deletedCount } = await this.pokemonModel.deleteOne({_id: id});
 
     if( deletedCount === 0)
